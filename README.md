@@ -15,12 +15,12 @@ A VS Code extension that displays a real-time countdown timer for a 9-hour workd
 ## Screenshot
 
 ```
-┌─────────┬──────────────────┐
-│  ⏰     │ Start     08:00  │
-│ 04:32   │ End       17:00  │
-│  LEFT   │ ████████░░░░░░░  │
-│ Working │   [⏯️]  [🔄]    │
-└─────────┴──────────────────┘
+┌──────────┬──────────────────────┐
+│ 04:32:15 │ Start        08:00   │
+│   LEFT   │ End          17:00   │
+│ Working  │ ████████████░░░░░░   │
+│          │  [Pause]   [Reset]   │
+└──────────┴──────────────────────┘
 ```
 
 ## Usage

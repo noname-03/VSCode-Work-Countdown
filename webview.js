@@ -150,25 +150,16 @@ class WorkCountdownViewProvider {
       display: flex;
       gap: 4px;
     }
-    .btn {
-      flex: 1;
-      background: var(--vscode-button-secondaryBackground);
-      color: var(--vscode-button-secondaryForeground);
-      border: none;
-      padding: 2px 6px;
-      border-radius: 3px;
-      cursor: pointer;
-      font-size: 10px;
-      white-space: nowrap;
-      text-align: center;
-      line-height: 1.4;
-    }
-    .btn:hover { background: var(--vscode-button-secondaryHoverBackground); }
-    .btn.primary {
-      background: var(--vscode-button-background);
-      color: var(--vscode-button-foreground);
-    }
-    .btn.primary:hover { background: var(--vscode-button-hoverBackground); }
+    .btn { flex: 1; border: none; padding: 2px 6px; border-radius: 3px; cursor: pointer; font-size: 10px; white-space: nowrap; text-align: center; line-height: 1.4; }
+    .btn:hover { opacity: 0.85; }
+    .btn-primary { background: var(--vscode-button-background); color: var(--vscode-button-foreground); }
+    .btn-primary:hover { background: var(--vscode-button-hoverBackground); }
+    .btn-pause { background: #3794ff33; color: #3794ff; border: 1px solid #3794ff55; }
+    .btn-pause:hover { background: #3794ff55; }
+    .btn-resume { background: #3794ff55; color: #3794ff; border: 1px solid #3794ff; }
+    .btn-resume:hover { background: #3794ff77; }
+    .btn-reset { background: #d1861633; color: #d18616; border: 1px solid #d1861655; }
+    .btn-reset:hover { background: #d1861655; }
     .placeholder {
       display: flex;
       flex-direction: column;
@@ -184,7 +175,7 @@ class WorkCountdownViewProvider {
   <div id="placeholder" class="placeholder">
     <div class="placeholder-icon">🕐</div>
     <div class="placeholder-text">Timer not set</div>
-    <button class="btn primary" onclick="setStartTime()">Set Start Time</button>
+    <button class="btn btn-primary" onclick="setStartTime()" title="Set your start time">Set Start Time</button>
   </div>
 
   <div id="timer" class="grid" style="display:none;">
@@ -209,8 +200,8 @@ class WorkCountdownViewProvider {
         <div class="progress-fill" id="progressFill" style="width:0%"></div>
       </div>
       <div class="btn-row">
-        <button class="btn" onclick="togglePause()" id="btnPause">⏯️</button>
-        <button class="btn" onclick="setStartTime()">🔄</button>
+        <button class="btn btn-pause" onclick="togglePause()" id="btnPause" title="Pause timer">⏯️</button>
+        <button class="btn btn-reset" onclick="setStartTime()" title="Reset start time">🔄</button>
       </div>
     </div>
   </div>
@@ -263,14 +254,14 @@ class WorkCountdownViewProvider {
       const btnPause = document.getElementById('btnPause');
 
       circle.className = 'clock-circle'; badge.className = 'badge badge-working'; badge.textContent = 'Working'; label.textContent = 'LEFT';
-      btnPause.style.display = ''; btnPause.textContent = '⏯️';
+      btnPause.style.display = ''; btnPause.textContent = '⏯️'; btnPause.className = 'btn btn-pause'; btnPause.title = 'Pause timer'; btnPause.title = 'Pause timer';
 
       if (rem <= 0) {
         circle.classList.add('done'); badge.className = 'badge badge-done'; badge.textContent = 'Done!';
         label.textContent = 'HOME'; btnPause.style.display = 'none';
       } else if (isPaused) {
         circle.classList.add('paused'); badge.className = 'badge badge-paused'; badge.textContent = 'Break';
-        label.textContent = 'PAUSE'; btnPause.textContent = '▶️';
+        label.textContent = 'PAUSE'; btnPause.textContent = '▶️'; btnPause.className = 'btn btn-resume'; btnPause.title = 'Resume timer';
       } else if (rem < 15 * 60 * 1000) {
         circle.classList.add('urgent'); badge.className = 'badge badge-urgent'; badge.textContent = 'Almost!';
       } else if (rem < 60 * 60 * 1000) {
