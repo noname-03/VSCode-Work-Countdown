@@ -4,6 +4,10 @@
   "description": "Countdown timer for a 9-hour workday (8 hours work + 1 hour break). Set your start time and see the countdown in real-time.",
   "version": "1.0.0",
   "publisher": "local",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/username/VSCode-Work-Countdown"
+  },
   "engines": {
     "vscode": "^1.74.0"
   },
